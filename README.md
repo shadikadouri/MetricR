@@ -4,7 +4,7 @@ A lightweight, interactive web application built with **R Shiny** to automate th
 
 This tool allows users to merge material quantities with price lists, calculate total project costs, and visualize the financial impact of different materials through dynamic charts.
 
-## 🚀 Features
+## Features
 
 * **Data Integration:** Seamlessly join Quantity files with Price Lists using a unique Material ID.
 * **Smart Parsing:** Supports both `.csv` and `.xlsx` (Excel) formats.
@@ -13,6 +13,6 @@ This tool allows users to merge material quantities with price lists, calculate 
 * **Visual Analytics:** A dynamic bar chart showing the **Top 5 Materials** by total cost impact.
 * **Export Ready:** Download the final processed estimation as a semicolon-separated CSV, optimized for Excel.
 
-## 🛠️ Installation
+## Installation
 
 To run this application locally, you need to have **R** and **RStudio** installed.
