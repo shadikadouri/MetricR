@@ -1,18 +1,34 @@
-# Automated Cost Estimation App (R Shiny)
+# MetricR: Cost Estimation App (R Shiny)
 
-A lightweight, interactive web application built with **R Shiny** to automate the creation of "Computo Metrico" (Bill of Quantities and Cost Estimation). 
+A small Shiny app that automates the *computo metrico* (the Italian bill of quantities used to estimate construction costs): it joins a list of material quantities with a price list, computes the cost of each line and of the whole project, and shows which materials weigh most.
 
-This tool allows users to merge material quantities with price lists, calculate total project costs, and visualize the financial impact of different materials through dynamic charts.
+The interface and the error messages are in Italian.
 
-## Features
+## What it does
+- **Joins** quantities and unit prices on a shared material ID.
+- **Reads** `.csv`, `.txt`, `.xlsx` and `.xls` files, and checks that the expected columns are present.
+- **Calculates** the cost of each line (`quantity × unit price`) and the total project cost.
+- **Shows** an interactive, searchable table and a bar chart of the **top 5 materials by cost**.
+- **Exports** the result as a semicolon-separated CSV that opens correctly in Excel.
 
-* **Data Integration:** Seamlessly join Quantity files with Price Lists using a unique Material ID.
-* **Smart Parsing:** Supports both `.csv` and `.xlsx` (Excel) formats.
-* **Real-time Calculations:** Automatic multiplication of quantities by unit prices with instant total cost updates.
-* **Interactive Table:** Browse, filter, and search through your cost estimate using a professional-grade data table (DT).
-* **Visual Analytics:** A dynamic bar chart showing the **Top 5 Materials** by total cost impact.
-* **Export Ready:** Download the final processed estimation as a semicolon-separated CSV, optimized for Excel.
+## Input format
+| File | Required columns |
+|---|---|
+| Quantities | `id_materiale`, `descrizione`, `quantita` |
+| Price list | `id_materiale`, `prezzo_unitario` |
 
-## Installation
+Two example files are included: `sample_quantities.csv` and `sample_prices.csv` (5 materials, total cost € 1,849.50).
 
-To run this application locally, you need to have **R** and **RStudio** installed.
+## How to run
+1. Install R and RStudio.
+2. Install the packages:
+   ```r
+   install.packages(c("shiny", "bslib", "dplyr", "readr", "readxl", "DT", "ggplot2"))
+   ```
+3. Open `estimator.R` in RStudio and click **Run App**, or run `shiny::runApp("estimator.R")`.
+4. Upload the two sample files from the sidebar.
+
+## Limitations
+- A material with no price in the price list gets no cost, so it is left out of the total.
+- Prices are not versioned or tied to a date, and there is no VAT or overhead calculation.
+- The app has not been deployed online yet.
